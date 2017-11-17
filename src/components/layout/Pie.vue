@@ -12,9 +12,7 @@
 						<img class="img-responsive center-block fotos1" src="img/facebook3.png" alt="" style="">
 					</div>
 					<div class="col-md-12 col-sm-12 text-center" >
-						
 						<p> MIMF <i class="fa fa-copyright" aria-hidden="true"></i>2017 1.0 | <a href="#">ISFT N°179</a> | <a href="#"> Soluciones Practicas</a></p>
-						
 					</div>
 				</div>
 			</div>
