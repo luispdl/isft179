@@ -5,18 +5,22 @@
 				<div class="form-group">
 					<label for="email"> Email:</label>
 					<input v-model="email" class="form-control" type="email">
+					<p class="help-block">*Requerido</p>
 				</div>
 				<div class="form-group">
 					<label for="password_actual"> Contraseña actual:</label>
 					<input v-model="password_actual" name="password_actual" class="form-control" type="password" placeholder="Contraseña Actual">
+					<p class="help-block">*Requerido</p>
 				</div>
 				<div class="form-group">
 					<label for="password_nuevo"> Nueva Contraseña:</label>
 					<input v-model="password_nuevo" name="password_nuevo" class="form-control" type="password" placeholder="Nueva Contraseña">
+					<p class="help-block">*Requerido</p>
 				</div>
 				<div class="form-group">
 					<label for="password_repetido"> Repetir Contraseña:</label>
 					<input v-model="password_repetido" name="password_repetido" class="form-control" type="password" placeholder="Repetir Contraseña">
+					<p class="help-block">*Requerido</p>
 				</div>
 				<div class="form-group">
 					<button class=" btn btn-primary" @click="modificar">Modificar</button>

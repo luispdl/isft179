@@ -1,19 +1,20 @@
 <template>
-	<!-- EN ESTA PARTE COMIENZA EL PIE DE LA PAGINA -->
-	<footer  >
-			<div class="gradiente_nav">
+	<footer>
+			<div class=" gradiente_nav">
 				<div class="container" >
-					<div class="col-md-3">
-						<img class=" img-responsive tamano-propio pull-right" src="img/logobanner.png" alt="">
+					<div class="col-md-3 col-sm-4">
+						<img class=" img-responsive tamano-propio center-block" src="img/logobanner.png" alt="">
 					</div>
-					<div class="col-md-6">
-						<img class=" img-responsive center-block fotos1" src="img/logo22.png" alt="">
+					<div class="col-md-6 col-sm-4">
+						<img class=" img-responsive center-block tamano-propio img-rounded" src="img/logo22-1.png"  alt="soluciones practicas">
 					</div>
-					<div class="col-md-3">
-						<img class="img-responsive fotos1" src="img/facebook3.png" alt="" style="">
+					<div class="col-md-3 col-sm-4">
+						<img class="img-responsive center-block fotos1" src="img/facebook3.png" alt="" style="">
 					</div>
-					<div class="col-md-12 text-center" >
+					<div class="col-md-12 col-sm-12 text-center" >
+						
 						<p> MIMF <i class="fa fa-copyright" aria-hidden="true"></i>2017 1.0 | <a href="#">ISFT N°179</a> | <a href="#"> Soluciones Practicas</a></p>
+						
 					</div>
 				</div>
 			</div>

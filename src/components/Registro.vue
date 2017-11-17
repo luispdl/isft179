@@ -19,6 +19,7 @@
 								<div class="form-group"  v-if="!preceptor">
 									<label for="legajo"><span class="glyphicon glyphicon-file"></span> Legajo</label>
 									<input v-model="legajo" type="number" class="form-control" id="legajo" name="legajo" placeholder="Legajo">
+                  <p class="help-block">*Campo requerido como validación</p>
 								</div>
                 <div class="form-group">
                   <label for="email"><span class="glyphicon glyphicon-user"></span> Nombre de Usuario</label>

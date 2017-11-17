@@ -1,6 +1,6 @@
 <template>
 	<div class="container text-center">
-		<div class="row col-12" v-if="(index % 2) == 0" v-for="(noticia, index) in noticias">
+		<div class="row col-md-12" v-if="(index % 2) == 0" v-for="(noticia, index) in noticias">
 			<div class="panel panel-default col-md-5 col-sm-12">
 				<div class="panel-heading"><h3><strong>{{ noticia.titulo }}</strong></h3></div>
 				<div class="panel-body">
