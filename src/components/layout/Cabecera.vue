@@ -28,18 +28,18 @@
                 <a href="#" class="color_fuentes dropdown-toggle" data-toggle="dropdown" role="button" ><i class="fa fa-paint-brush" aria-hidden="true" ald="notificaciones" ></i><span class="caret"></span></a>
                   <ul class="dropdown-menu">
                     <li><a href="#"><div class="opcion1"></div></a></li>
-                    <li><a href="#"><div class="opcion2"></div></a></li>  
-                    <li><a href="#"><div class="opcion3"></div></a></li>            
+                    <li><a href="#"><div class="opcion2"></div></a></li>
+                    <li><a href="#"><div class="opcion3"></div></a></li>
                   </ul>
               </li>
-              
-              
+
+
               <li class="dropdown" id="letras_forma">
                 <a href="#" class="color_fuentes dropdown-toggle" data-toggle="dropdown" role="button" ><i class="fa fa-etsy" aria-hidden="true"></i><span class="caret"></span></a>
                   <ul class="dropdown-menu">
                     <li><a href="#"><div><p >E</p></div></a></li>
-                    <li><a href="#"><div><p >E</p></div></a></li> 
-                    <li><a href="#"><div><p >E</p></div></a></li>           
+                    <li><a href="#"><div><p >E</p></div></a></li>
+                    <li><a href="#"><div><p >E</p></div></a></li>
                   </ul>
               </li>
               <li><a class="cerrar btn btn-link" @click="cerrarSesion">Cerrar Sesión <span class="glyphicon glyphicon-log-out"></span></a></li>
@@ -87,9 +87,9 @@ export default {
   .icon-bar{
     background-color: black;
   }
-  .corregircaja{ 
+  .corregircaja{
         margin-top:-5pt;
-        padding: 10pt; 
+        padding: 10pt;
     }
 
 
@@ -101,7 +101,7 @@ export default {
     background: -o-linear-gradient(bottom right, silver, white); /* For Opera 11.1 to 12.0 */
     background: -moz-linear-gradient(bottom right, silver, white); /* For Firefox 3.6 to 15 */
     background: linear-gradient(to bottom right, silver, white); /* Standard syntax */
-    
+
   }
   .gradiente_responsive:hover{
     background: silver; /* For browsers that do not support gradients */
@@ -117,7 +117,7 @@ export default {
   .tipo_fuentes{
     font-size:20px;
     font-style:arial;
-     
+
   }
   .logo_institucional{
     overflow: normal;
@@ -129,8 +129,8 @@ export default {
   }
 
   .imagen_institucional{
-    float: left; 
-    width: 65px; 
+    float: left;
+    width: 65px;
     height: 65px;
   }
   .color_fuentes{
@@ -155,7 +155,7 @@ export default {
 
   #paleta_colores ul{
     min-width: 50px;
-    
+
   }
 
   #paleta_colores ul li{
@@ -179,7 +179,7 @@ export default {
     height: 32px;
   }
   .opcion1{
-    
+
     background: blue; /* color de referencia */
     background: -webkit-linear-gradient(left,rgba(0,0,255,0.2),rgba(0,0,255,1.5)); /* para navegadores Safari */
     background: -o-linear-gradient(right,rgba(0,0,255,0.2),rgba(0,0,255,1.5)); /*para navegadores Opera */
@@ -188,7 +188,7 @@ export default {
 
   }
   .opcion2{
-    
+
     background: aqua; /* color de referencia */
     background: -webkit-linear-gradient(left,rgba(0,0,255,0.2),rgba(0,0,255,0.5)); /* para navegadores Safari */
     background: -o-linear-gradient(right,rgba(0,0,255,0.2),rgba(0,0,255,0.5)); /*para navegadores Opera */
@@ -196,7 +196,7 @@ export default {
     background: linear-gradient(to right, rgba(0,0,255,0.2), rgba(0,0,255,0.5)); /*para navegadores Standard*/
   }
   .opcion3{
-    
+
     background: silver;/* color de referencia */
     background: -webkit-linear-gradient(left,rgba(100,118,135,0.2),rgba(100,118,135,0.7)); /* para navegadores Safari */
     background: -o-linear-gradient(right,rgba(100,118,135,0.2),rgba(100,118,135,0.7)); /*para navegadores Opera */
@@ -218,7 +218,7 @@ export default {
   #letras_forma ul{
     min-width: 53px;
     margin-right: 0.5px;
-    
+
   }
 
   #letras_forma ul li{
@@ -242,25 +242,25 @@ export default {
   }
 
   #letras_forma ul li:nth-child(1) a div p{
-    font-size: 12px; 
-    text-align: center; 
-    margin-top: 2px; 
+    font-size: 12px;
+    text-align: center;
+    margin-top: 2px;
   }
 
   #letras_forma ul li:nth-child(2) a div p{
-    font-size: 16px; 
-    text-align: center; 
+    font-size: 16px;
+    text-align: center;
     margin-top: -1px;
   }
 
   #letras_forma ul li:nth-child(3) a div p{
-    font-size: 20px; 
-    text-align: center; 
+    font-size: 20px;
+    text-align: center;
     margin-top: -4px;
   }
-
   .cerrar {
     color:white;
     float:left;
   }
 </style>
+

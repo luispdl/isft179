@@ -16,7 +16,6 @@
 						</a>
 					</div>
 					<div class="col-md-12 col-sm-12 text-center" >
-						
 						<p>
 						 MIMF 1.0 <i class="fa fa-copyright" aria-hidden="true"></i> 2017 Soluciones Prácticas | <i class="fa fa-registered" aria-hidden="true"></i>
 							<a href="#" target="_blank">
@@ -26,7 +25,6 @@
 						 		Contacto con Soporte Técnico
 						 	</a>
 						</p>
-						
 					</div>
 				</div>
 			</div>

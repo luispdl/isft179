@@ -80,7 +80,9 @@ export default {
 					url: urlIniciarSesion,
 					data: formData,
 				}).then( response => {
+
 					let estado = response.data.estado;
+					console.log(response.data);
 					if(estado == "iniciar") {
 						localStorage.setItem('datos', JSON.stringify(response.data.datos));
 						localStorage.setItem('token', response.data.token);
