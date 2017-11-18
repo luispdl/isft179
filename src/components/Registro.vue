@@ -5,7 +5,7 @@
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<h2 class="panel-title">
-							REGISTRO ALUMNO
+							REGISTRO USUARIO
 						</h2>
 					</div>
 					<div id="registro_alumno" class="panel-collapse collapse in">
@@ -63,11 +63,11 @@ export default {
   name: 'registro',
   data () {
     return {
-    	password:null,
+    	password:'',
     	legajo:null,
-    	nombre_usuario:null,
-      email:null,
-    	password2:null,
+    	nombre_usuario:'',
+      email:'',
+    	password2:'',
     	errors:[],
     	numero_documento: this.$route.params.usuario,
     	claseModal:"alert-danger",
@@ -111,10 +111,12 @@ export default {
   				data: formData,
   				url: urlRegistrar,
   			}).then( response => {
+          console.log(response.data);
           this.claseModal ="alert-success";
           this.tituloModal = "Excelente";
           this.mensajeModal = "Se registró exitosamente!!";
   				this.redireccion = "/login";
+          $("#modal-final").modal();
    			}).catch( error => {
   				this.claseModal ="alert-danger";
   				this.tituloModal = "Error";

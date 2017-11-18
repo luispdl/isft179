@@ -5,7 +5,7 @@
       <i v-if="alumno" class="fa fa-graduation-cap" aria-hidden="true"></i>
       <i v-if="preceptor" class="fa fa-user" aria-hidden="true"></i>
       <i v-if="admin" class="fa fa-user-secret" aria-hidden="true"></i>
-      {{ nombre_usuario }} <small v-if="mostrarBorrar">{{ legajo }} <button class="btn btn-danger">x</button></small>
+      {{ nombre_usuario }} <small v-if="mostrarBorrar">{{ legajo }} <button @click="borrarLegajo" class="btn btn-danger">x</button></small>
     </h3>
   </div>
       <section class="main container margen_section">
@@ -19,10 +19,9 @@
                 <router-link v-show="legajo" exact-active-class="active" to="/menu_finales" tag="li"><a>Inscripción a Finales</a></router-link>
                 <router-link v-show="legajo" exact-active-class="active" to="/menu_estado" tag="li"><a>Estado de la Inscripción</a></router-link>
                 <router-link v-show="legajo" exact-active-class="active" to="/menu_situacion_academica" tag="li"><a>Situación Académica</a></router-link>
-                <template v-if="preceptor || admin">
+                <template v-if="!legajo">
                   <router-link exact-active-class="active" to="/preceptor/inscripciones_admin" tag="li"><a>Modificaciones de Inscripciones</a></router-link>
                   <router-link exact-active-class="active" to="/preceptor/noticias" tag="li"><a>Noticias</a></router-link>
-                  <router-link exact-active-class="active" to="/estadisticas" tag="li"><a>Estadisticas</a></router-link>
                   <router-link v-if="admin" exact-active-class="active" to="/periodo_inscripcion" tag="li"><a>Periodo Inscripción</a></router-link>
                 </template>
               </ul>
@@ -91,6 +90,14 @@ export default {
         }
       }
   	},
+    borrarLegajo() {
+      let datos = JSON.parse(localStorage.getItem('datos'));
+      datos.legajo = 0;
+      delete datos.legajo;
+      localStorage.setItem('datos', JSON.stringify(datos));
+      this.$store.state.legajo = 0;
+      this.$router.push('/');
+    }
   },
   mounted() {
     this.getDatos();

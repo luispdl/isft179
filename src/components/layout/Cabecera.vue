@@ -19,9 +19,8 @@
               <a href="#" class="color_fuentes dropdown-toggle " data-toggle="dropdown" role="button" ><i class="fa fa-cog" aria-hidden="true" ald="notificaciones" ></i> Configuración <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <router-link to="/editar" tag="li"><a>Editar Perfil</a></router-link>
-                <router-link v-if="tipo_usuario==3" to="/registro/preceptor" tag="li"><a>Registrar Preceptor</a></router-link>
-                <li class="divider"></li>
-                <li><a href="#" @click="cerrarSesion">Cerrar Sesión</a></li>              
+                <router-link v-if="tipo_usuario == 3" to="/registro/preceptor" tag="li"><a>Registrar Preceptor</a></router-link> 
+                <router-link v-if="tipo_usuario != 1" to="/preceptor/reiniciar" tag="li"><a>Reiniciar Clave</a></router-link>         
               </ul>
             </li>
 
@@ -43,6 +42,7 @@
                     <li><a href="#"><div><p >E</p></div></a></li>           
                   </ul>
               </li>
+              <li><a class="cerrar btn btn-link" @click="cerrarSesion">Cerrar Sesión<span class="glyphicon glyphicon-log-out"></span></a></li>
           </ul> 
         </div>
       </div>
@@ -257,5 +257,10 @@ export default {
     font-size: 20px; 
     text-align: center; 
     margin-top: -4px;
+  }
+
+  .cerrar {
+    color:white;
+    float:left;
   }
 </style>

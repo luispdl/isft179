@@ -28,7 +28,6 @@ function tipoUsuario() {
 }
 
 router.beforeEach((to, from , next ) => {
-  console.log(to);
   let ruta_para_registro = to.matched[0].path;
   if (to.path != '/login' && ruta_para_registro != '/registro/:usuario' && !estaLogueado()) {
     next('/login');
