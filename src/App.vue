@@ -5,7 +5,7 @@
       <navbar v-if="registrado"></navbar>
       <router-view v-on:cambiarLegajo="cambiarLegajo" v-on:iniciar="iniciar" v-on:cerrar="cerrar"></router-view>
     </div>
-    <pie class="pie container-fluid"></pie>
+    <pie></pie>
     <modal-notificacion :redireccion="modal_redireccion" :tituloModal="modal_titulo" :mensajeRespuesta="modal_mensaje" :claseModal="modal_clase" v-on:cerrar='cerrar'></modal-notificacion>
     <modal-cerrar-sesion :mensaje="mensaje_cerrar"></modal-cerrar-sesion>
   </div>

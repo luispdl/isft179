@@ -5,12 +5,12 @@
         <div class="navbar-header ">
           <button type="button" class="navbar-toggle collapsed gradiente_responsive" data-toggle="collapse" data-target="#navegación-PP">
             <span class="sr-only">Desplegar / Ocultar Menu</span>
-            <span class="icon-bar icon1"></span>
-            <span class="icon-bar icon1"></span>
-            <span class="icon-bar icon1"></span>              
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>              
           </button>
           <img class="navbar-brand imagen_institucional" src="img/isft.png">
-          <a href="#" class="navbar-brand tipo_fuentes logo_institucional">ISFT N°179 </a>
+          <a href="http://www.isft179.edu.ar/wpress/" target="_blank" class="navbar-brand tipo_fuentes logo_institucional">ISFT N°179 "Dr. Carlos Pellegrini"</a>
         </div>
         <!-- inicio menu la parte de noticias-->
         <div class="collapse navbar-collapse botones_operativos" id="navegación-PP">
@@ -42,7 +42,7 @@
                     <li><a href="#"><div><p >E</p></div></a></li>           
                   </ul>
               </li>
-              <li><a class="cerrar btn btn-link" @click="cerrarSesion">Cerrar Sesión<span class="glyphicon glyphicon-log-out"></span></a></li>
+              <li><a class="cerrar btn btn-link" @click="cerrarSesion">Cerrar Sesión <span class="glyphicon glyphicon-log-out"></span></a></li>
           </ul> 
         </div>
       </div>
