@@ -75,10 +75,12 @@
 		methods: {
 			getNoticia(){
 				var id = this.$route.params.id;
+				let token = localStorage.getItem('token');
 				var urlNoticia = url + 'mostrarNoticia.php';
 				axios.get(urlNoticia,{
 					params: {
-						id: id
+						id: id,
+						token: token
 					}
 				}).then( res =>{
 					this.titulo = res.data.titulo;

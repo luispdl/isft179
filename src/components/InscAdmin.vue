@@ -83,10 +83,12 @@
 		},
 		methods: {
 			buscarPorLegajo(){
+				let token = localStorage.getItem('token');
 				axios.get(urlBuscar,{
 					params:{
 						legajo:this.inputLegajo,
-						tipo:'legajo'
+						tipo:'legajo',
+						token: token
 					}
 				}).then(res=>{
 					if(res.data[0]){
@@ -101,10 +103,12 @@
 				})
 			},
 			buscarPorDni(){
+				let token = localStorage.getItem('token');
 				axios.get(urlBuscar,{
 					params:{
 						dni:this.dni,
-						tipo:'dni'
+						tipo:'dni',
+						token: token
 					}
 				}).then( res=> {
 					if(res.data[0]){
@@ -118,10 +122,12 @@
 				})
 			},
 			buscarPorNombre(){
+				let token = localStorage.getItem('token');
 				axios.get(urlBuscar,{
 					params:{
 						nombre:this.nombre,
-						tipo:'nombre'
+						tipo:'nombre',
+						token: token
 					}
 				}).then( res=> {
 					console.log(res.data.length);

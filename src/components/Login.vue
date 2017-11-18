@@ -67,14 +67,14 @@ export default {
 	},
 	methods: {
 		iniciarSesion(){
-			var token = localStorage.getItem('token');
-			var formData = new FormData();
+			let token = localStorage.getItem('token');
+			let formData = new FormData();
 			formData.append('usuario', this.usuario);
 			formData.append('password', this.password);
 			formData.append('token', token);
 			console.log(formData);
 			if (this.validarFormulario) {
-				var urlIniciarSesion = url + 'login.php';
+				let urlIniciarSesion = url + 'login.php';
 				axios({
 					method: 'POST',
 					url: urlIniciarSesion,

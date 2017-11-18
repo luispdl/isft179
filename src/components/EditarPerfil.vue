@@ -67,6 +67,7 @@ export default {
   		console.log(this.nombre_usuario);
   	},
   	modificar() {
+  		let token = localStorage.getItem('token');
   		this.validar();
   		if (this.errors.length == 0) {
   			let urlEditar = url + 'editarPerfil.php';
@@ -75,6 +76,7 @@ export default {
 	  		formData.append('password_nuevo', this.password_nuevo);
 	  		formData.append('password_actual', this.password_actual);
 	  		formData.append('nombre_usuario', this.nombre_usuario);
+	  		formData.append('token', token);
 	  		console.log(this.nombre_usuario);
 	  		axios({
 	  			method: 'POST',
