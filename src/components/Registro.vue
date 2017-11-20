@@ -41,6 +41,7 @@
 									<span class="glyphicon glyphicon-off"></span>
 									Registrar
 								</button>
+                <router-link v-if="preceptor" class="btn btn-danger" to="/">Salir</router-link>
 							</form>
 						</div>
 					</div>

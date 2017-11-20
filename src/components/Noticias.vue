@@ -19,10 +19,10 @@
 						</thead>
 						<tbody>
 							<tr v-for="noticia in noticias">
-								<td>{{noticia.ID_noticia}}</td>
-								<td>{{noticia.titulo}}</td>
-								<td>{{noticia.fecha_creacion | fechaConFormato}}</td>
-								<td>
+								<td class="text-center">{{noticia.ID_noticia}}</td>
+								<td class="text-center">{{noticia.titulo}}</td>
+								<td class="text-center">{{noticia.fecha_creacion | fechaConFormato}}</td>
+								<td class="text-center">
 									<router-link :to="'/preceptor/noticia/'+noticia.ID_noticia" title = 'Editar' class="btn btn-warning"><span class="fa fa-pencil-square-o" aria-hidden="true"> Editar</span></router-link>
 									<a @click="eliminarNoticia(noticia.ID_noticia)" href="#" title ="Eliminar" class="btn btn-danger" ><span class="fa fa-trash-o" aria-hidden="true"> Eliminar</span></a>
 								</td>
@@ -67,9 +67,11 @@
 			},
 			eliminarNoticia(id){
 				var urlEliminiarNoticias = url + 'eliminarNoticia.php';
+				let token = localStorage.getItem('token');
 				axios.get(urlEliminiarNoticias,{
 					params: {
-						id: id
+						id: id,
+						token: token
 					}
 				}).then( res => {
 					this.$router.push("/preceptor/noticias");

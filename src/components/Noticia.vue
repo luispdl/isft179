@@ -35,9 +35,10 @@
 				</div>
 			</div>
 
-			<div class="box-footer">
+			<div class="box-footer text-center">
 				<button @click="guardarNoticia" type="button" class="btn btn-primary">Guardar noticia</button>
-				<button type="reset" class="btn btn-primary">Reiniciar formulario</button>
+				<button type="reset" class="btn btn-success">Reiniciar formulario</button>
+				<router-link to="/preceptor/noticias" type="button" class="btn btn-danger">Volver</router-link>
 			</div>
 		</form>
 		<modal-notificacion :claseModal="claseModal" :tituloModal="tituloModal" :mensajeRespuesta="mensajeRespuesta" :redireccion="redireccion"></modal-notificacion>
@@ -125,16 +126,16 @@
 					this.claseModal = "bg-success";
 					this.tituloModal = "Operación exitosa";
 					this.mensajeRespuesta = "La noticia se guardó de forma exitosa!";
-					this.redireccion = "/noticias";
+					this.redireccion = "/preceptor/noticias";
 					$('#modal-final').modal();
 				}).catch(err => {
 					this.claseModal = "bg-danger";
 					this.tituloModal = "Operación fallida";
 					this.mensajeRespuesta = err.response.data.mensaje;
 					if(!this.$route.params.id) {
-						this.redireccion = "/noticia";
+						this.redireccion = "/preceptor/noticia";
 					} else {
-						this.redireccion = "/noticia/" + this.$route.params.id;
+						this.redireccion = "/preceptor/noticia/" + this.$route.params.id;
 					}
 					$('#modal-final').modal();
 				})

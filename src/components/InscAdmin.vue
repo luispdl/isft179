@@ -8,7 +8,7 @@
 			    <label for="legajo" class="col-md-6">Legajo</label>
 			    <input v-model="inputLegajo" type="number" class="form-control col-md-5" id="legajo" name="legajo">
 			  </div>
-			  <button @click="buscarPorLegajo" type="button" class="btn btn-primary col-md-1"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Buscar</button>
+			  <button @click="buscarPorLegajo" type="button" class="btn btn-primary col-md-1"><span class="hidden-md glyphicon glyphicon-search" aria-hidden="true"></span><span class="hidden-sm"> Buscar</span></button>
 			</form>
 
 			<form class="form-inline">
@@ -17,7 +17,7 @@
 					<label for="nombre" class="col-md-6">Apellido y Nombre</label>
 					<input v-model="nombre" type="text" class="form-control col-md-5" placeholder="PEREZ JUAN" name="nombre">
 				</div>
-				<button @click="buscarPorNombre" type="button" class="btn btn-primary col-md-1"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Buscar</button>
+				<button @click="buscarPorNombre" type="button" class="btn btn-primary col-md-1"><span class="hidden-md glyphicon glyphicon-search" aria-hidden="true"></span><span class="hidden-sm"> Buscar</span></button>
 			</form>
 
 			<form class="form-inline">
@@ -26,7 +26,7 @@
 					<label for="dni" class="col-md-6">DNI</label>
 					<input v-model="dni" type="text" class="form-control col-md-5" name="dni">
 				</div>
-				<button @click="buscarPorDni" type="button" class="btn btn-primary col-md-1"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Buscar</button>
+				<button @click="buscarPorDni" type="button" class="btn btn-primary col-md-1"><span class="hidden-md glyphicon glyphicon-search" aria-hidden="true"></span><span class="hidden-sm"> Buscar</span></button>
 			</form>
 		</div>
 		<hr>
@@ -53,7 +53,8 @@
 				</tbody>
 			</table>
 		</div>
-		<div class="sinResultado" v-show="sinResultado"> No hay alumnos encontrados.</div>
+		<div class="sinResultado text-center" v-show="sinResultado"> No hay alumnos encontrados.</div>
+		<modal-notificacion :continuar="continuar" :claseModal="claseModal" :tituloModal="tituloModal" :redireccion="redireccion" :mensajeRespuesta="mensajeRespuesta"></modal-notificacion>
 	</div>
 
 </template>
@@ -63,6 +64,7 @@
 	import axios from 'axios';
 	import { store } from '../store';
   import { EventBus } from '../event-bus.js';
+  import ModalNotificacion from "./ModalNotificacion.vue";
 
 	var urlBuscar = configUrl.apiUrl + 'buscarAlumno.php';
 	export default {
@@ -74,7 +76,15 @@
 				alumnos:[],
 				sinResultado: false,
 				inputLegajo: 0,
+				claseModal:'',
+				tituloModal:'',
+				redireccion:'',
+				mensajeRespuesta:'',			
+				continuar:false,	
 			}
+		},
+		components: {
+			ModalNotificacion
 		},
 		computed: {
 			legajo() {
@@ -91,15 +101,20 @@
 						token: token
 					}
 				}).then(res=>{
-					if(res.data[0]){
+					if(res.data){
+						console.log(res.data[0]);
 						this.sinResultado = false;
 						this.alumnos = res.data;
+						console.log(this.alumnos.legajo);
 					} else {
 						this.sinResultado = true;
 					}
-					console.log(this.alumnos);
-				}).catch(err=>{
-					console.log(err);
+				}).catch(error =>{
+					this.claseModal = "bg-warning";
+	  			this.tituloModal = 'Cuidado';
+	  			this.redireccion = '/preceptor/inscripciones_admin';
+	  			this.mensajeRespuesta = error.response.data.mensaje;
+	  			$("#modal-final").modal();
 				})
 			},
 			buscarPorDni(){
@@ -117,8 +132,12 @@
 					} else {
 						this.sinResultado = true;
 					}
-				}).catch( err =>{
-					console.log(err.response);
+				}).catch( error => {
+					this.claseModal = "bg-warning";
+	  			this.tituloModal = 'Cuidado';
+	  			this.redireccion = '/preceptor/inscripciones_admin';
+	  			this.mensajeRespuesta = error.response.data.mensaje;
+	  			$("#modal-final").modal();
 				})
 			},
 			buscarPorNombre(){
@@ -130,15 +149,18 @@
 						token: token
 					}
 				}).then( res=> {
-					console.log(res.data.length);
 					if(res.data.length != 0) {
 						this.alumnos = res.data;
 						this.sinResultado = false;
 					} else {
 						this.sinResultado = true;
 					}
-				}).catch( err =>{
-					console.log(err.response);
+				}).catch( error =>{
+					this.claseModal = "bg-warning";
+	  			this.tituloModal = 'Cuidado';
+	  			this.redireccion = '/preceptor/inscripciones_admin';
+	  			this.mensajeRespuesta = error.response.data.mensaje;
+	  			$("#modal-final").modal();
 				})
 			},
 			seleccionarAlumno(legajo){

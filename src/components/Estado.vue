@@ -16,10 +16,10 @@
 						</thead>
 						<tbody>
 							<tr v-for="materia in carrera.materias">
-								<td>{{materia.nombre_materia}} ({{materia.codigo_materia}})</td>
-								<td>{{materia.fecha_final | fechaConFormato}}</td>
-								<td>{{materia.modalidad}}</td>
-								<td><a class="btn btn-link" v-on:click="abrirComprobante(materia.url_codigo_operacion, materia)">Abrir Comprobante</a></td>
+								<td class="text-center">{{materia.nombre_materia}} ({{materia.codigo_materia}})</td>
+								<td class="text-center">{{materia.fecha_final | fechaConFormato}}</td>
+								<td class="text-center">{{materia.modalidad}}</td>
+								<td class="text-center"><a class="btn btn-success" v-on:click="abrirComprobante(materia.url_codigo_operacion, materia)">Abrir Comprobante</a></td>
 							</tr>
 						</tbody>
 					</table>
@@ -70,8 +70,10 @@
 						token: token,
 					}
 				}).then(res=>{
+					console.log(res);
 					this.carreras = res.data;
 				}).catch(err=>{
+					console.log(err.response);
 					let codigo_error = err.response.status;
 					this.modalMensaje = err.response.data.mensaje;
 					console.log(codigo_error);

@@ -2,10 +2,10 @@
   <div id="app">
     <cabecera :legajo="legajo" class="hidden-print cabecera" v-on:cerrar='cerrar'></cabecera>
     <div class="main container">
-      <navbar v-if="registrado"></navbar>
+      <navbar class="hidden-print" v-if="registrado"></navbar>
       <router-view v-on:cambiarLegajo="cambiarLegajo" v-on:iniciar="iniciar" v-on:cerrar="cerrar"></router-view>
     </div>
-    <pie></pie>
+    <pie class="hidden-print"></pie>
     <modal-notificacion :redireccion="modal_redireccion" :tituloModal="modal_titulo" :mensajeRespuesta="modal_mensaje" :claseModal="modal_clase" v-on:cerrar='cerrar'></modal-notificacion>
     <modal-cerrar-sesion :mensaje="mensaje_cerrar"></modal-cerrar-sesion>
   </div>
@@ -25,7 +25,8 @@ export default {
       modal_mensaje: "",
       modal_redireccion: "",
       modal_titulo: "",
-      mensaje_cerrar: "",  
+      mensaje_cerrar: "",
+      continuar:false,  
     }
   },
   store,
@@ -66,7 +67,6 @@ export default {
   },
   mounted: function(){
     EventBus.$on('cerrar', mensaje => {
-      console.log("cerrando");
       this.cerrar(mensaje);
     });
     var token = localStorage.getItem('token');
@@ -90,5 +90,6 @@ export default {
 }
 .cabecera {
   height: 10%;
+  margin-bottom: 10px;
 }
 </style>

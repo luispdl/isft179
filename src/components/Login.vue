@@ -72,7 +72,6 @@ export default {
 			formData.append('usuario', this.usuario);
 			formData.append('password', this.password);
 			formData.append('token', token);
-			console.log(formData);
 			if (this.validarFormulario) {
 				let urlIniciarSesion = url + 'login.php';
 				axios({
@@ -80,9 +79,7 @@ export default {
 					url: urlIniciarSesion,
 					data: formData,
 				}).then( response => {
-
 					let estado = response.data.estado;
-					console.log(response.data);
 					if(estado == "iniciar") {
 						localStorage.setItem('datos', JSON.stringify(response.data.datos));
 						localStorage.setItem('token', response.data.token);
@@ -91,7 +88,6 @@ export default {
 						this.$router.push({path:`/registro/${this.usuario}`});
 					}
 				}).catch( error => {
-					console.log(error.response);
 					this.mensajeRespuesta = error.response.data.mensaje;
 					$('#modal-final').modal();
 				});

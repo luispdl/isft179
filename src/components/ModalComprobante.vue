@@ -9,15 +9,16 @@
           <button type="button" class="hidden-print close" data-dismiss="modal">&times;</button>
           <h4 class="modal-title">{{titulo}}</h4>
         </div>
-        <div class="modal-body">
+        <div class="modal-body text-center" id="comprobante">
           <p>{{materia.nombre_materia}} ({{materia.codigo_materia}})</p>
           <p>{{materia.fecha_final}}</p>
           <p>{{materia.modalidad}}</p>
           <img v-bind:src="url_codigo_operacion">
+          <svg id="barcode"></svg>
         </div>
         <div class="modal-footer">
           <button type="button" class="hidden-print btn btn-warning" onclick="window.print();">Imprimir</button>
-          <button type="button" class="hidden-print btn btn-default" data-dismiss="modal">Cerrar</button>
+          <button type="button" class="hidden-print btn btn-danger" data-dismiss="modal">Cerrar</button>
         </div>
       </div>
 
@@ -34,6 +35,11 @@ export default {
 		}
 	},
 	props:['materia', 'url_codigo_operacion'],
+  methods: {
+  },
+  mounted() {
+    $("#barcode").JsBarcode("Hi!");
+  }
 }
 
 </script>

@@ -8,6 +8,10 @@ export const store = new Vuex.Store({
 		registrado: false,
 		tipo_usuario: getTipoUsuario(),
 		legajo: getLegajo(),
+		fechas: {
+			fecha_inicio:'',
+			fecha_fin:'',
+		}
 	}
 });
 

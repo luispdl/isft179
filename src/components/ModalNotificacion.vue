@@ -25,12 +25,12 @@
     },
     props:["claseModal","tituloModal","mensajeRespuesta",'redireccion','continuar'],
     updated(){
-      self = this;
-      $("#modal-final").on('hidden.bs.modal', function () {
+      $("#modal-final").on('hidden.bs.modal', () => {
         if(this.continuar) {
-          this.$store.state.registrado = false;
+          this.$emit("cerrar");
+          this.$router.push('/login');
         } else {
-          self.$router.push({path:self.redireccion});
+          this.$router.push({path:this.redireccion});
         }
       });
     }
