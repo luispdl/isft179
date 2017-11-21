@@ -136,7 +136,6 @@
             }
         }).then(response => {
         	this.carreras = response.data;
-          console.log(response.data);
           this.loading = false;
         }).catch(error => {
           let codigo_error = error.response.status;

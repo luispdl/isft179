@@ -19,17 +19,16 @@
               <a href="#" class="color_fuentes dropdown-toggle " data-toggle="dropdown" role="button" ><i class="fa fa-cog" aria-hidden="true" ald="notificaciones" ></i> Configuración <span class="caret"></span></a>
               <ul class="dropdown-menu">
                 <router-link to="/editar" tag="li"><a>Editar Perfil</a></router-link>
-                <router-link v-if="tipo_usuario == 3" to="/registro/preceptor" tag="li"><a>Registrar Preceptor</a></router-link> 
-                <router-link v-if="tipo_usuario != 1" to="/preceptor/reiniciar" tag="li"><a>Reiniciar Clave</a></router-link>         
+                <router-link v-if="tipo_usuario == 3" to="/admin/preceptores" tag="li"><a>Administrar Preceptores</a></router-link>       
               </ul>
             </li>
 
             <li class="dropdown" id="paleta_colores">
                 <a href="#" class="color_fuentes dropdown-toggle" data-toggle="dropdown" role="button" ><i class="fa fa-paint-brush" aria-hidden="true" ald="notificaciones" ></i><span class="caret"></span></a>
                   <ul class="dropdown-menu">
-                    <li><a href="#"><div class="opcion1"></div></a></li>
-                    <li><a href="#"><div class="opcion2"></div></a></li>
-                    <li><a href="#"><div class="opcion3"></div></a></li>
+                    <li><a href="#"><div class="opcion1 opcEstilo" id="css/estilos.css"></div></a></li>
+                    <li><a href="#"><div class="opcion2 opcEstilo" id="css/estilos1.css"></div></a></li>  
+                    <li><a href="#"><div class="opcion3 opcEstilo" id="css/estilos2.css"></div></a></li>
                   </ul>
               </li>
 

@@ -1,55 +1,53 @@
 <template>
-	<div id="registro" class="container">
-		<div class="container col-md-offset-4 col-md-4">
-			<div class="panel-group center-block">
-				<div class="panel panel-default">
-					<div class="panel-heading">
-						<h2 class="panel-title">
-							REGISTRO USUARIO
-						</h2>
-					</div>
-					<div id="registro_alumno" class="panel-collapse collapse in">
-						<div class="panel-body">
-							<div class="alert-danger" v-if="errors.length !== 0">
-								<ol class="login-errors">
-									<li v-for="error in errors"> {{ error }}</li>
-								</ol>
-							</div>
-							<form role="form">
-								<div class="form-group"  v-if="!preceptor">
-									<label for="legajo"><span class="glyphicon glyphicon-file"></span> Legajo</label>
-									<input v-model="legajo" type="number" class="form-control" id="legajo" name="legajo" placeholder="Legajo">
-                  <p class="help-block">*Campo requerido como validación</p>
-								</div>
-                <div class="form-group">
-                  <label for="email"><span class="glyphicon glyphicon-user"></span> Nombre de Usuario</label>
-                  <input v-model="nombre_usuario" type="text" class="form-control" id="email" name="email" placeholder="Nombre de Usuario">
-                </div>
-								<div class="form-group">
-									<label for="username"><span class="glyphicon glyphicon-user"></span> Email</label>
-									<input v-model="email" type="text" class="form-control" id="username" name="username" placeholder="Email">
-								</div>
-								<div class="form-group">
-									<label for="psw"><span class="glyphicon glyphicon-eye-open"></span> Contraseña</label>
-									<input v-model="password" type="password" class="form-control" id="psw" placeholder="Contraseña">
-								</div>
-								<div class="form-group">
-									<label for="psw2"><span class="glyphicon glyphicon-eye-open"></span> Repetir Contraseña</label>
-									<input v-model="password2" type="password" class="form-control" id="psw2" placeholder="Repetir Contraseña">
-								</div>
-								<button @click="registrar" type="button" class="btn btn-success" id="enviar_legajo">
-									<span class="glyphicon glyphicon-off"></span>
-									Registrar
-								</button>
-                <router-link v-if="preceptor" class="btn btn-danger" to="/">Salir</router-link>
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		<modal-notificacion :claseModal="claseModal" :tituloModal="tituloModal" :redireccion="redireccion" :mensajeRespuesta="mensajeModal"></modal-notificacion>
-	</div>
+	<section class="main container-fluid margen_section text-center">					
+    <h3>
+     REGISTRO USUARIO
+   </h3>
+
+   <div id="registro_alumno" class="col-sm-6 col-sm-offset-3">
+    <div>
+     <div class="alert-danger" v-if="errors.length !== 0">
+      <ol class="login-errors">
+       <li v-for="error in errors"> {{ error }}</li>
+     </ol>
+    </div>
+    <form role="form">
+      <div class="form-group"  v-if="!preceptor">
+        <label for="legajo"> Legajo</label>
+        <input v-model="legajo" class="form-control" type="number" id="legajo" name="legajo" placeholder="Legajo">
+        <p class="help-block">*Campo requerido como validación</p>
+      </div>
+   
+    <div class="form-group">
+      <label for="email">Nombre de Usuario</label>
+      <input v-model="nombre_usuario" class="form-control" type="text" id="email" name="email" placeholder="Nombre de Usuario">
+    </div>
+  
+      <div class="form-group">
+          <label for="username">Email</label>
+         <input v-model="email" class="form-control" type="text" id="username" name="username" placeholder="Email">
+      </div>
+      <div class="form-group">
+        <label for="psw">Contraseña</label>
+        <input v-model="password" class="form-control" type="password"  id="psw" placeholder="Contraseña">
+      </div>
+
+      <div class="form-group">
+        <label for="psw2">Repetir Contraseña</label>
+        <input v-model="password2" class="form-control" type="password" id="psw2" placeholder="Repetir Contraseña">
+      </div>
+      <div class="form-group">
+        <button @click="registrar" type="button" class="btn btn-primary btn-md" id="enviar_legajo">
+          <span class="glyphicon glyphicon-off"></span>
+            Registrar
+        </button>
+        <router-link v-if="preceptor" class="btn btn-danger" to="/">Salir</router-link>
+      </div>
+    </form>
+    </div>
+    </div>
+    <modal-notificacion :claseModal="claseModal" :tituloModal="tituloModal" :redireccion="redireccion" :mensajeRespuesta="mensajeModal"></modal-notificacion>
+	</section>
 </template>
 
 <script>
@@ -86,7 +84,7 @@ export default {
   		if(this.password.length < 8 ) {
   			this.errors.push('La contraseña tiene que tener un mínimo de 8 caracteres');
   		}
-  		if(this.pass != this.pass2) {
+  		if(this.password != this.password2) {
   			this.errors.push('Las contraseñas deben ser iguales');
   			this.password = '';
   			this.password2 = '';
@@ -112,7 +110,6 @@ export default {
   				data: formData,
   				url: urlRegistrar,
   			}).then( response => {
-          console.log(response.data);
           this.claseModal ="alert-success";
           this.tituloModal = "Excelente";
           this.mensajeModal = "Se registró exitosamente!!";
@@ -137,7 +134,23 @@ export default {
 </script>
 
 <style lang="css" scoped>
-	.container {
-		padding:50px 0;
-	}
+.margen_section{
+    margin-top: 10px;
+    margin-bottom: 10px;
+    height: 100%;
+    border-bottom: 1px solid silver;
+  }
+  form {
+    min-height: 210px;
+    border-radius: 10px;
+    border-style: solid;
+    border-top: solid 15px rgba(0,0,255,0.5);
+    border-bottom: solid 1px rgba(0,0,255,0.5);
+    border-left: solid 1px rgba(0,0,255,0.5);
+    border-right: solid 1px rgba(0,0,255,0.5);
+  }
+  .form-group {
+    margin-right: 10px;
+    margin-left: 10px;
+  }
 </style>

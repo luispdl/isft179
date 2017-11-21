@@ -91,7 +91,6 @@
 						this.urlImagen = res.data.imagen;
 					}
 				}).catch( err => {
-					console.log(err.response);
 				})
 			},
 			agregarOactualizar(){
@@ -173,7 +172,6 @@
 				}).then(response => {
 					this.contieneImagen = false;
 				}).catch(err => {
-					console.log(err.response);
 				});
 			}
 		},

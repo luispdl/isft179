@@ -50,12 +50,12 @@
 				var token = localStorage.getItem('token');
 				var urlNoticias = url + 'mostrarNoticias.php'
 				axios.get(urlNoticias,{
-            params: {
-              token: token
-            }
+           params: {
+             token: token
+           }
         }).then(res => {
-				  	this.noticias = res.data.noticias;
-				  	this.loading = false;
+				  this.noticias = res.data.noticias;
+				  this.loading = false;
 				}).catch(err => {
 					let codigo_error = err.response.status;
 					if (codigo_error = 403) {

@@ -13,7 +13,11 @@ import Navbar from './components/layout/Navbar.vue'
 import Pie from './components/layout/Pie.vue'
 import Preceptor from './components/Preceptor.vue'
 import Alumno from './components/Alumno.vue'
-import EditarPerfil from './components/EditarPerfil.vue';
+import EditarPerfil from './components/EditarPerfil.vue'
+import ReiniciarClave from './components/ReiniciarClave.vue'
+import Admin from './components/Admin.vue'
+import Preceptores from './components/Preceptores.vue'
+import EditarPassword from './components/EditarPassword.vue'
 
 const routes = [
 	{ path: '/', component: Home},
@@ -39,9 +43,24 @@ const routes = [
       { path: 'noticia', component:Noticia},
       { path: 'noticia/:id', component: Noticia},
       { path: 'inscripciones_admin', component: InscAdmin},
+      { path: 'reiniciar_clave', component: ReiniciarClave},
     ],
     beforeEnter: (to, from, next) => {
       if(tipoUsuario()==2 || tipoUsuario()==3 ) {
+        next();
+      } else {
+        next('/');
+      }
+    }
+  },
+  { path: '/admin', component: Admin,
+    children: [
+      { path: 'preceptores', component: Preceptores},
+      { path: 'editar_password/:usuario', component: EditarPassword},
+      { path: '/periodo_inscripcion', component:PeriodoInscripcion},
+    ],
+    beforeEnter: (to, from, next) => {
+      if(tipoUsuario()==3 ) {
         next();
       } else {
         next('/');

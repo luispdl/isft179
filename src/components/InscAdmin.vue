@@ -19,7 +19,6 @@
 				</div>
 				<button @click="buscarPorNombre" type="button" class="btn btn-primary col-md-1"><span class="hidden-md glyphicon glyphicon-search" aria-hidden="true"></span><span class="hidden-sm"> Buscar</span></button>
 			</form>
-
 			<form class="form-inline">
 				<div class="col-md-2"></div>
 				<div class="form-group col-md-6">
@@ -28,6 +27,14 @@
 				</div>
 				<button @click="buscarPorDni" type="button" class="btn btn-primary col-md-1"><span class="hidden-md glyphicon glyphicon-search" aria-hidden="true"></span><span class="hidden-sm"> Buscar</span></button>
 			</form>
+			<form class="form-inline">
+				<div class="col-md-2"></div>
+				<div class="form-group col-md-6">
+					<label for="nombre_usuario" class="col-md-6">Nombre de Usuario</label>
+					<input v-model="nombre_usuario" type="text" class="form-control col-md-5" placeholder="nombreusuario" name="nombre_usuario">
+				</div>
+				<button @click="buscarPorUsuario" type="button" class="btn btn-primary col-md-1"><span class="hidden-md glyphicon glyphicon-search" aria-hidden="true"></span><span class="hidden-sm"> Buscar</span></button>
+			</form>
 		</div>
 		<hr>
 		<div v-show="!sinResultado" class="row container">
@@ -35,26 +42,32 @@
 			<table class="table table-striped">
 				<thead>
 					<tr>
-						<td>Legajo</td>
-						<td>Nombre</td>
-						<td>Apellido</td>
-						<td>Nro Documento</td>
-						<td></td>
+						<td class="text-center">Legajo</td>
+						<td class="text-center">Nombre</td>
+						<td class="text-center">Apellido</td>
+						<td class="text-center">Nro Documento</td>
+						<td class="text-center">Nombre de Usuario</td>
+						<td class="text-center">Acciones</td>
 					</tr>
 				</thead>
 				<tbody>
 					<tr v-for="alumno in alumnos">
-						<td>{{alumno.legajo}}</td>
-						<td>{{alumno.nombre}}</td>
-						<td>{{alumno.apellido}}</td>
-						<td>{{alumno.numero_documento}}</td>
-						<td><a @click="seleccionarAlumno(alumno.legajo)" class="btn btn-success"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Seleccionar</a></td>
+						<td class="text-center">{{alumno.legajo}}</td>
+						<td class="text-center">{{alumno.nombre}}</td>
+						<td class="text-center">{{alumno.apellido}}</td>
+						<td class="text-center">{{alumno.numero_documento}}</td>
+						<td class="text-center">{{alumno.nombre_usuario}}</td>
+						<td class="text-center">
+							<a @click="seleccionarAlumno(alumno.legajo)" class="btn btn-success"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Seleccionar</a>
+							<a @click="reiniciarClave(alumno.nombre_usuario)" class="btn btn-danger"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Reiniciar Clave</a>
+						</td>
 					</tr>
 				</tbody>
 			</table>
 		</div>
-		<div class="sinResultado text-center" v-show="sinResultado"> No hay alumnos encontrados.</div>
+		<div class="sinResultado text-center" v-show="sinResultado"> No hay usuarios encontrados.</div>
 		<modal-notificacion :continuar="continuar" :claseModal="claseModal" :tituloModal="tituloModal" :redireccion="redireccion" :mensajeRespuesta="mensajeRespuesta"></modal-notificacion>
+		<modal-reiniciar-clave :abrir="abrir_reiniciar" :usuario="usuario"></modal-reiniciar-clave>
 	</div>
 
 </template>
@@ -65,6 +78,7 @@
 	import { store } from '../store';
   import { EventBus } from '../event-bus.js';
   import ModalNotificacion from "./ModalNotificacion.vue";
+  import ModalReiniciarClave from "./ModalReiniciarClave.vue";
 
 	var urlBuscar = configUrl.apiUrl + 'buscarAlumno.php';
 	export default {
@@ -73,6 +87,7 @@
 			return {
 				dni:'',
 				nombre:'',
+				nombre_usuario:'',
 				alumnos:[],
 				sinResultado: false,
 				inputLegajo: 0,
@@ -81,10 +96,13 @@
 				redireccion:'',
 				mensajeRespuesta:'',			
 				continuar:false,	
+				abrir_reiniciar:false,
+				usuario:'',
 			}
 		},
 		components: {
-			ModalNotificacion
+			ModalNotificacion,
+			ModalReiniciarClave,
 		},
 		computed: {
 			legajo() {
@@ -101,11 +119,9 @@
 						token: token
 					}
 				}).then(res=>{
-					if(res.data){
-						console.log(res.data[0]);
+					if(res.data[0]){
 						this.sinResultado = false;
 						this.alumnos = res.data;
-						console.log(this.alumnos.legajo);
 					} else {
 						this.sinResultado = true;
 					}
@@ -163,6 +179,29 @@
 	  			$("#modal-final").modal();
 				})
 			},
+			buscarPorUsuario(){
+				let token = localStorage.getItem('token');
+				axios.get(urlBuscar,{
+					params:{
+						nombre_usuario:this.nombre_usuario,
+						tipo:'usuario',
+						token: token
+					}
+				}).then( res=> {
+					if(res.data[0]) {
+						this.alumnos = res.data;
+						this.sinResultado = false;
+					} else {
+						this.sinResultado = true;
+					}
+				}).catch( error =>{
+					this.claseModal = "bg-warning";
+	  			this.tituloModal = 'Cuidado';
+	  			this.redireccion = '/preceptor/inscripciones_admin';
+	  			this.mensajeRespuesta = error.response.data.mensaje;
+	  			$("#modal-final").modal();
+				})
+			},
 			seleccionarAlumno(legajo){
 				var datos = JSON.parse(localStorage.getItem("datos"));
 				datos.legajo = legajo;
@@ -172,7 +211,10 @@
 				EventBus.$emit("cambiarLegajo", this.legajo);
 				this.$router.push('/menu_finales')
 			},
-
+			reiniciarClave(nombre_usuario) {
+				this.usuario = nombre_usuario;
+				this.abrir_reiniciar = true;
+			},
 		}
 	}
 </script>

@@ -62,7 +62,6 @@
 				  .then(res => {
 				  	this.noticias = res.data.noticias;
 				}).catch(err => {
-						console.log(err);
 				})
 			},
 			eliminarNoticia(id){
@@ -76,7 +75,6 @@
 				}).then( res => {
 					this.$router.push("/preceptor/noticias");
 				}).catch( err => {
-					console.log(err);
 				})
 			}
 		},

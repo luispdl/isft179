@@ -67,7 +67,6 @@
 					this.carreras = res.data;
 					this.loading = false;
 				}).catch(err => {
-					console.log(err);
 				})
 			},
 			getLegajo() {

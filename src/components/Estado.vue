@@ -70,13 +70,10 @@
 						token: token,
 					}
 				}).then(res=>{
-					console.log(res);
 					this.carreras = res.data;
 				}).catch(err=>{
-					console.log(err.response);
 					let codigo_error = err.response.status;
 					this.modalMensaje = err.response.data.mensaje;
-					console.log(codigo_error);
 					if(codigo_error == 403){
 						EventBus.$emit("cerrar", err.response.data.mensaje);
 					} else {

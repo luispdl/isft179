@@ -4,31 +4,31 @@
 			<div class="cd-md-12 cd-xs-12">
 				<div role="tabpanel" >
 					<div class="col-xs-12 col-sm-12" >
-					<ul class="nav nav-tabs 2" role="tablist">
-						<li role="presentacion" class="active"><a href="#parte1" aria-controls="parte1" data-toggle="tab" role="tab" >Iniciar Sesión</a></li>
+						<ul class="nav nav-tabs 2" role="tablist">
+							<li role="presentacion" class="active"><a href="#parte1" aria-controls="parte1" data-toggle="tab" role="tab" >Iniciar Sesión</a></li>
 
-					</ul>
-					<div class="tab-content">
-							<div class="alert-danger" v-if="errors.length !== 0">
-								<ol class="login-errors">
-								<li v-for="error in errors"> {{ error }}</li>
-								</ol>
+						</ul>
+						<div class="tab-content">
+								<div class="alert-danger" v-if="errors.length !== 0">
+									<ol class="login-errors">
+									<li v-for="error in errors"> {{ error }}</li>
+									</ol>
+								</div>
+							<!-- Contenido del sistema para entrar a la aplicacion-->
+							<div role="tabpanel" class="tab-pane text-center inscripcion well active cd-xs-3 cd-md-12">
+								<label> Usuario: </label>
+								<div class="form-group">
+									<input v-model="usuario" type="text" name="usuario" placeholder="Usuario" style="text-align: center;">
+								</div>
+								<label> Contraseña:</label>
+								<div class="form-group">
+									<input v-model="password" type="password" minlength="8" placeholder="Contraseña" style="text-align: center;">
+								</div>
+								<div class="form-group">
+									<button @click="iniciarSesion" type="button" class="btn btn-primary btn-md" id="enviar">Iniciar</button>
+								</div>
 							</div>
-						<!-- Contenido del sistema para entrar a la aplicacion-->
-						<div role="tabpanel" class="tab-pane text-center inscripcion well active cd-xs-3 cd-md-12 " id="parte1">
-        						<label> Usuario: </label>
-        						<div class="form-group">
-        							<input v-model="usuario" type="text" name="usuario" placeholder="Usuario" style="text-align: center;">
-        						</div>
-        						<label> Contraseña:</label>
-        						<div class="form-group">
-        							<input v-model="password" type="password" minlength="8" placeholder="Contraseña" style="text-align: center;">
-        						</div>
-        						<div class="form-group">
-        							<button @click="iniciarSesion" type="button" class="btn btn-primary btn-md" id="enviar">Iniciar</button>
-        						</div>
-        				</div>
-					</div>
+						</div>
 					</div>
 				</div>
 			</div>

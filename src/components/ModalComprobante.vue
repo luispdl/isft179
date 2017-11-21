@@ -14,7 +14,6 @@
           <p>{{materia.fecha_final}}</p>
           <p>{{materia.modalidad}}</p>
           <img v-bind:src="url_codigo_operacion">
-          <svg id="barcode"></svg>
         </div>
         <div class="modal-footer">
           <button type="button" class="hidden-print btn btn-warning" onclick="window.print();">Imprimir</button>
@@ -38,7 +37,6 @@ export default {
   methods: {
   },
   mounted() {
-    $("#barcode").JsBarcode("Hi!");
   }
 }
 
