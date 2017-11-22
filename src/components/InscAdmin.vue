@@ -14,10 +14,10 @@
 			<form class="form-inline">
 				<div class="col-md-2"></div>
 				<div class="form-group col-md-6">
-					<label for="nombre" class="col-md-6">Apellido y Nombre</label>
-					<input v-model="nombre" type="text" class="form-control col-md-5" placeholder="PEREZ JUAN" name="nombre">
+					<label for="nombre" class="col-md-6">Apellido</label>
+					<input v-model="nombre" type="text" class="form-control col-md-5" placeholder="PEREZ" name="nombre">
 				</div>
-				<button @click="buscarPorNombre" type="button" class="btn btn-primary col-md-1"><span class="hidden-md glyphicon glyphicon-search" aria-hidden="true"></span><span class="hidden-sm"> Buscar</span></button>
+				<button @click="buscarPorNombre(1)" type="button" class="btn btn-primary col-md-1"><span class="hidden-md glyphicon glyphicon-search" aria-hidden="true"></span><span class="hidden-sm"> Buscar</span></button>
 			</form>
 			<form class="form-inline">
 				<div class="col-md-2"></div>
@@ -42,6 +42,7 @@
 			<table class="table table-striped">
 				<thead>
 					<tr>
+						<td class="text-center">N°</td>
 						<td class="text-center">Legajo</td>
 						<td class="text-center">Nombre</td>
 						<td class="text-center">Apellido</td>
@@ -51,7 +52,8 @@
 					</tr>
 				</thead>
 				<tbody>
-					<tr v-for="alumno in alumnos">
+					<tr v-for="(alumno,index) in alumnos">
+						<td class="text-center">{{(index +1) + (paginaActiva-1)*20}} </td>
 						<td class="text-center">{{alumno.legajo}}</td>
 						<td class="text-center">{{alumno.nombre}}</td>
 						<td class="text-center">{{alumno.apellido}}</td>
@@ -64,6 +66,11 @@
 					</tr>
 				</tbody>
 			</table>
+			<nav class="text-center" aria-label="Page navigation">
+			  <ul class="pagination">
+			    <li v-bind:class="{ active: paginaActiva==n }" v-for="n in paginas"><a @click="buscarPorNombre(n)">{{n}}</a></li>
+			  </ul>
+			</nav>
 		</div>
 		<div class="sinResultado text-center" v-show="sinResultado"> No hay usuarios encontrados.</div>
 		<modal-notificacion :continuar="continuar" :claseModal="claseModal" :tituloModal="tituloModal" :redireccion="redireccion" :mensajeRespuesta="mensajeRespuesta"></modal-notificacion>
@@ -98,6 +105,8 @@
 				continuar:false,	
 				abrir_reiniciar:false,
 				usuario:'',
+				paginas:0,
+				paginaActiva: 1,
 			}
 		},
 		components: {
@@ -156,22 +165,27 @@
 	  			$("#modal-final").modal();
 				})
 			},
-			buscarPorNombre(){
+			buscarPorNombre(pagina){
 				let token = localStorage.getItem('token');
+				this.paginaActiva = pagina;
 				axios.get(urlBuscar,{
 					params:{
 						nombre:this.nombre,
 						tipo:'nombre',
-						token: token
+						token: token,
+						pagina: pagina,
 					}
 				}).then( res=> {
-					if(res.data.length != 0) {
-						this.alumnos = res.data;
+					console.log(res);
+					if(res.data.alumnos.length != 0) {
+						this.alumnos = res.data.alumnos;
+						this.paginas = res.data.paginas;
 						this.sinResultado = false;
 					} else {
 						this.sinResultado = true;
 					}
 				}).catch( error =>{
+					console.log(error.response);
 					this.claseModal = "bg-warning";
 	  			this.tituloModal = 'Cuidado';
 	  			this.redireccion = '/preceptor/inscripciones_admin';
@@ -238,5 +252,8 @@
 	.sinResultado {
 		font-style: italic;
 		font-size: 18px;
+	}
+	.pagination {
+		cursor:default;
 	}
 </style>

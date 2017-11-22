@@ -6,7 +6,7 @@
 						<img class=" img-responsive tamano-propio center-block" src="img/logobanner.png" alt="">
 					</div>
 					<div class="col-md-6 col-sm-4">
-						<a href="#" target="_blank">
+						<a href="http://2017practica.areasistemas179.com/SolucionesPracticas/" target="_blank">
 							<img class=" img-responsive center-block tamano-propio img-rounded" src="img/logo22-1.png"  alt="soluciones practicas">
 						</a>
 					</div>

@@ -19,7 +19,7 @@
 						</tr>
 					</thead>
 					<tbody>
-						<tr v-for="materia in carrera.materias"  v-bind:class="[materia.fecha_regular!=null?materia.fecha_final==null?'bg-info':'bg-success':'bg-danger']">
+						<tr v-for="materia in carrera.materias"  v-bind:class="[materia.fecha_regular!=null?(materia.fecha_final==null || materia.nota_final<4)?'regularizado':'aprobado':'noaprobado']">
 							<th>{{materia.nombre_materia}} ({{materia.codigo_materia}})</th>
 							<th class="text-center">{{materia.fecha_regular || 'NO REGULARIZO' | fechaConFormato}}</th>
 							<th class="text-center">{{materia.fecha_final || (materia.fecha_regular==null?'-':'NO RINDIO') | fechaConFormato}}</th>
@@ -64,6 +64,7 @@
 						token: token
 					}
 				}).then(res => {
+					console.log(res);
 					this.carreras = res.data;
 					this.loading = false;
 				}).catch(err => {
@@ -92,5 +93,14 @@
 <style>
 	.cargando {
 		display: inline-block;
+	}
+	.aprobado {
+		background: rgba(193, 250, 192,0.7);
+	}
+	.regularizado{
+		background: rgba(193, 250, 192,0.3);
+	}
+	.noaprobado{
+		background: rgba(247, 106, 86,0.5);
 	}
 </style>
