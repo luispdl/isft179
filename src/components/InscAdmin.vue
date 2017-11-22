@@ -14,8 +14,8 @@
 			<form class="form-inline">
 				<div class="col-md-2"></div>
 				<div class="form-group col-md-6">
-					<label for="nombre" class="col-md-6">Apellido y Nombre</label>
-					<input v-model="nombre" type="text" class="form-control col-md-5" placeholder="PEREZ JUAN" name="nombre">
+					<label for="nombre" class="col-md-6">Apellido</label>
+					<input v-model="nombre" type="text" class="form-control col-md-5" placeholder="PEREZ" name="nombre">
 				</div>
 				<button @click="buscarPorNombre" type="button" class="btn btn-primary col-md-1"><span class="hidden-md glyphicon glyphicon-search" aria-hidden="true"></span><span class="hidden-sm"> Buscar</span></button>
 			</form>
@@ -94,8 +94,8 @@
 				claseModal:'',
 				tituloModal:'',
 				redireccion:'',
-				mensajeRespuesta:'',			
-				continuar:false,	
+				mensajeRespuesta:'',
+				continuar:false,
 				abrir_reiniciar:false,
 				usuario:'',
 			}
@@ -165,6 +165,7 @@
 						token: token
 					}
 				}).then( res=> {
+					console.log(res);
 					if(res.data.length != 0) {
 						this.alumnos = res.data;
 						this.sinResultado = false;
