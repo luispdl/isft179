@@ -105,17 +105,20 @@ export default {
   			formData.append('password', this.password);
   			formData.append('token', token);
   			formData.append('numero_documento', this.numero_documento);
+        console.log(this.numero_documento);
   			axios({
   				method: 'post',
   				data: formData,
   				url: urlRegistrar,
   			}).then( response => {
+          console.log(response);
           this.claseModal ="alert-success";
           this.tituloModal = "Excelente";
           this.mensajeModal = "Se registró exitosamente!!";
   				this.redireccion = "/login";
           $("#modal-final").modal();
    			}).catch( error => {
+          console.log(error);
   				this.claseModal ="alert-danger";
   				this.tituloModal = "Error";
   				this.mensajeModal = error.response.data.mensaje;

@@ -3,7 +3,7 @@
 			<div class=" gradiente_nav">
 				<div class="container" >
 					<div class="col-md-3 col-sm-4">
-						<img class=" img-responsive tamano-propio center-block" src="img/logobanner.png" alt="">
+						<img class=" img-responsive tamano-propio center-block" src="img/logobanner1.png" alt="">
 					</div>
 					<div class="col-md-6 col-sm-4">
 						<a href="http://2017practica.areasistemas179.com/SolucionesPracticas/" target="_blank">

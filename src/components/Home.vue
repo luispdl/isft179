@@ -1,23 +1,29 @@
 <template>
 	<div class="container text-center">
-		<div class="row col-md-12" v-if="(index % 2) == 0" v-for="(noticia, index) in noticias">
-			<div class="panel panel-default col-md-5 col-sm-12">
-				<div class="panel-heading"><h3><strong>{{ noticia.titulo }}</strong></h3></div>
-				<div class="panel-body">
-					<img v-if="noticia.imagen" :src="noticia.imagen" class="img-thumbnail img-rounded">
-					{{ noticia.contenido }}
+		<div class="container-fluid">
+			<div class="row" v-if="(index % 2) == 0" v-for="(noticia, index) in noticias">
+				<div class="col-md-6">
+					<div class="panel panel-default">
+						<div class="panel-heading"><h3><strong>{{ noticia.titulo }}</strong></h3></div>
+						<div class="panel-body">
+							<img v-if="noticia.imagen" :src="noticia.imagen" class="img-thumbnail img-rounded">
+							{{ noticia.contenido }}
+						</div>
+						<div class="panel-footer">Fecha de creación de noticia: {{ noticia.fecha_creacion | fechaConFormato }}</div>
+					</div>
 				</div>
-				<div class="panel-footer">Fecha de creación de noticia: {{ noticia.fecha_creacion | fechaConFormato }}</div>
-			</div>
-			<div v-if="noticias[(index + 1)]" class="panel panel-default col-md-5 col-sm-12">
-				<div class="panel-heading">
-					<h3><strong>{{ noticias[(index + 1)].titulo }}</strong></h3>
-				</div>
-				<div class="panel-body">
-					<img v-if="noticias[(index + 1)].imagen" :src="noticias[(index + 1)].imagen" class="img-thumbnail img-rounded">
-					{{ noticias[(index + 1)].contenido }}
-				</div>
-				<div class="panel-footer">Fecha de creación de noticia: {{ noticias[(index + 1)].fecha_creacion | fechaConFormato }}</div>
+				<div class="col-md-6" v-if="noticias[(index + 1)]">
+					<div  class="panel panel-default">
+						<div class="panel-heading">
+							<h3><strong>{{ noticias[(index + 1)].titulo }}</strong></h3>
+						</div>
+						<div class="panel-body">
+							<img v-if="noticias[(index + 1)].imagen" :src="noticias[(index + 1)].imagen" class="img-thumbnail img-rounded">
+							{{ noticias[(index + 1)].contenido }}
+						</div>
+						<div class="panel-footer">Fecha de creación de noticia: {{ noticias[(index + 1)].fecha_creacion | fechaConFormato }}</div>
+					</div>
+				</div>	
 			</div>
 		</div>
 		<ring-loader class="cargando" :loading="loading"></ring-loader>
@@ -83,12 +89,12 @@
 	  margin-left: 5px; 
 	  margin-right: 10px; 
 	  float:left;
+	  width: 100%;
 	}
 	.cargando {
 		display: inline-block;
 	}
 	.panel-body {
-		position:relative;
 		height: 220px;
 	}
 	.panel-heading {
@@ -98,16 +104,9 @@
 		text-align: left;
 		background: rgba(0,0,255,0.3);
 	}
-	.row {
-		display: table;
-	}
-	.row [class*="col-"] {
-		display: table-cell;
-		float: left;
-	}
+
 	img {
-		max-height: 200px;
-	  max-width: 200px;
+	  width: 200px;
 	  float: right; 
 	  margin: 0px 0px 15px 15px;
 	}
