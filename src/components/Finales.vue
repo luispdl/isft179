@@ -63,7 +63,7 @@
       <modal-notificacion :claseModal="claseModal" :tituloModal="tituloModal" :mensajeRespuesta="mensajeRespuesta" :redireccion="redireccionModal"></modal-notificacion>
     </div>
 </template>
-
+<!-- prueba de facu -->
 <script>
   import axios from 'axios';
 
