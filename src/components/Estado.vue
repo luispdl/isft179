@@ -9,17 +9,27 @@
 					<table class='table table-striped'>
 						<thead>
 							<tr>
+								<th class="text-center">Cod. Materia</th>
 								<th class="text-center">Materia</th>
 								<th class="text-center">Fecha Final</th>
 								<th class="text-center">Modalidad</th>
+								<th></th>
 							</tr>
 						</thead>
 						<tbody>
 							<tr v-for="materia in carrera.materias">
+								<td class="text-center">{{materia.codigo_materia}}</td>
 								<td class="text-center">{{materia.nombre_materia}} ({{materia.codigo_materia}})</td>
 								<td class="text-center">{{materia.fecha_final | fechaConFormato}}</td>
 								<td class="text-center">{{materia.modalidad}}</td>
-								<td class="text-center"><a class="btn btn-success" v-on:click="abrirComprobante(materia.url_codigo_operacion, materia)">Abrir Comprobante</a></td>
+								<td class="text-center">
+									<a 	v-bind:disabled="!periodoFinalizado" 
+											class="btn btn-success" 
+											v-on:click="periodoFinalizado?abrirComprobante(materia.url_codigo_operacion, materia):null"
+											:data-toggle="!periodoFinalizado?'tooltip':null" data-placement="left" :title="!periodoFinalizado?'Disponible cuando finalice el periodo de inscripción':''">
+										Abrir Comprobante
+									</a>
+								</td>
 							</tr>
 						</tbody>
 					</table>
@@ -90,11 +100,20 @@
 				$('#modal-comprobante').modal();
 			},
 		},
+		computed: {
+			periodoFinalizado(){
+				let fecha_final = new Date(this.$store.state.fechas.fecha_fin).toLocaleDateString();
+				let fecha_hoy = new Date().toLocaleDateString();
+				console.log(fecha_hoy);
+				return fecha_hoy > fecha_final;
+			},
+		},
 		created(){
 		},
 		mounted: function() {
 			this.getLegajo();
 			this.getCarreras();
+			console.log(this.periodoFinalizado);
 		},
 		filters: {
 			fechaConFormato(fecha) {

@@ -12,6 +12,7 @@
 				<table class='table'>
 					<thead>
 						<tr>
+							<th class='text-center'>Cod. Materia</th>
 							<th class='text-center'>Materia</th>
 							<th class='text-center'>Fecha Regular</th>
 							<th class='text-center'>Fecha Final</th>
@@ -20,7 +21,8 @@
 					</thead>
 					<tbody>
 						<tr v-for="materia in carrera.materias"  v-bind:class="[materia.fecha_regular!=null?(materia.fecha_final==null || materia.nota_final<4)?'regularizado':'aprobado':'noaprobado']">
-							<th>{{materia.nombre_materia}} ({{materia.codigo_materia}})</th>
+							<th><i class="fa fa-info-circle" data-toggle="tooltip" data-placement="left" :title="materia.correlativas?'Correlativas:' + materia.correlativas.join('-'):'No posee correlativas'"></i>  Cod. {{materia.codigo_materia}}</th>
+							<th>{{materia.nombre_materia}}</th>
 							<th class="text-center">{{materia.fecha_regular || 'NO REGULARIZO' | fechaConFormato}}</th>
 							<th class="text-center">{{materia.fecha_final || (materia.fecha_regular==null?'-':'NO RINDIO') | fechaConFormato}}</th>
 							<th class="text-center">{{materia.fecha_final==null?'-':materia.nota_final}}</th>
@@ -64,7 +66,7 @@
 						token: token
 					}
 				}).then(res => {
-					console.log(res);
+					console.log(res.data);
 					this.carreras = res.data;
 					this.loading = false;
 				}).catch(err => {

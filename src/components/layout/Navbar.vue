@@ -6,7 +6,7 @@
           <i v-if="alumno" class="fa fa-graduation-cap" aria-hidden="true"></i>
           <i v-if="preceptor" class="fa fa-user" aria-hidden="true"></i>
           <i v-if="admin" class="fa fa-user-secret" aria-hidden="true"></i>
-          {{ nombre_usuario }} <small v-if="mostrarBorrar">{{ legajo }} <button @click="borrarLegajo" class="btn btn-danger">x</button></small>
+          {{ nombre_usuario }}<span v-if="alumno"> - {{ legajo }}</span><small v-if="mostrarBorrar"> - {{ legajo }} <button @click="borrarLegajo" class="btn btn-danger">x</button></small>
         </h3>
       </div>
       <div class="row text-right fechas col-sm-offset-3 col-sm-3">
