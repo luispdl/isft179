@@ -27,6 +27,7 @@
                 <router-link v-show="legajo" exact-active-class="active" to="/menu_estado" tag="li"><a>Estado de la Inscripción</a></router-link>
                 <router-link v-show="legajo" exact-active-class="active" to="/menu_situacion_academica" tag="li"><a>Situación Académica</a></router-link>
                 <template v-if="!legajo">
+                  <router-link v-if="admin" exact-active-class="active" to="/preceptor/bitacora" tag="li"><a>Bitacora</a></router-link>
                   <router-link exact-active-class="active" to="/preceptor/inscripciones_admin" tag="li"><a>Modificaciones de Inscripciones</a></router-link>
                   <router-link exact-active-class="active" to="/preceptor/noticias" tag="li"><a>Noticias</a></router-link>
                   <router-link v-if="admin" exact-active-class="active" to="/periodo_inscripcion" tag="li"><a>Periodo Inscripción</a></router-link>
