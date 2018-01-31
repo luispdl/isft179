@@ -1,0 +1,16 @@
+* {
+	margin:0;
+	padding:0;
+}
+
+html, body {
+	height: 100%;
+}
+
+.gradiente_nav {
+    background: red; /* color de referencia */
+    background: -webkit-linear-gradient(left,rgba(255,0,0,0.2),rgba(255,0,0,0.7)); /* para navegadores Safari */
+    background: -o-linear-gradient(right,rgba(255,0,0,0.2),rgba(255,0,0,0.7)); /*para navegadores Opera */
+    background: -moz-linear-gradient(right,rgba(255,0,0,0.2),rgba(255,0,0,0.7)); /*para navegadores Fx */
+    background: linear-gradient(to right, rgba(255,0,0,0.2),rgba(255,0,0,0.7)); /*para navegadores Standard*/
+}
