@@ -26,6 +26,7 @@
                 <router-link v-show="legajo" exact-active-class="active" to="/menu_finales" tag="li"><a>Inscripción a Finales</a></router-link>
                 <router-link v-show="legajo" exact-active-class="active" to="/menu_estado" tag="li"><a>Estado de la Inscripción</a></router-link>
                 <router-link v-show="legajo" exact-active-class="active" to="/menu_situacion_academica" tag="li"><a>Situación Académica</a></router-link>
+                <router-link v-show="(preceptor || admin) && legajo" exact-active-class="active" v-bind:to="'/preceptor/bitacora/' + legajo" tag="li"><a>Bitacora</a></router-link>
                 <template v-if="!legajo">
                   <router-link v-if="admin" exact-active-class="active" to="/preceptor/bitacora" tag="li"><a>Bitacora</a></router-link>
                   <router-link exact-active-class="active" to="/preceptor/inscripciones_admin" tag="li"><a>Modificaciones de Inscripciones</a></router-link>

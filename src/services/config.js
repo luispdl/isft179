@@ -4,6 +4,7 @@ const configService = {
 
 	// Usar la ubicación en su servidor local para desarrollo
 	apiUrl :'http://localhost/servidor/'
+	
 }
 
 export default configService;

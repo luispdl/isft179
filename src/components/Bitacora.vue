@@ -6,7 +6,7 @@
 		</ul>
 		<div id="cajon_pestanas_academica" class="tab-content">
 			<div>
-				<table class='table'>
+				<table class='table' v-if="bitacora.length > 0">
 					<thead>
 						<tr>
 							<th>Id Usuario</th>
@@ -22,8 +22,9 @@
 						</tr>
 					</tbody>
 				</table>
+				<div v-else class="h3 text-center"><em>No hay registros</em></div>
 			</div>
-			<ring-loader class="cargando" :loading="loading"></ring-loader>
+			<ring-loader class="cargando text-center" :loading="loading"></ring-loader>
 		</div>
 
 	</div>
@@ -81,11 +82,12 @@ export default {
 			});
 		}
 	},
-	mounted() {
-		
+	created() {
 		if(this.$route.params.usuario_id) {
+			console.log("usuario");
 			this.getBitacoraPorUsuario();
 		} else {
+			console.log('admin');
 			this.getBitacoraAdmin();
 		}
 	}

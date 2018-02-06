@@ -62,7 +62,6 @@
 						<td class="text-center">
 							<a @click="seleccionarAlumno(alumno.legajo)" class="btn btn-success"><span class="glyphicon glyphicon-log-in" aria-hidden="true"></span> Seleccionar</a>
 							<a @click="reiniciarClave(alumno.nombre_usuario)" class="btn btn-danger"><span class="glyphicon glyphicon-remove-sign" aria-hidden="true"></span> Reiniciar Clave</a>
-							<router-link :to="'/preceptor/bitacora/' + alumno.usuario_id" class="btn btn-warning">Bitacora</router-link>
 						</td>
 					</tr>
 				</tbody>
@@ -132,7 +131,6 @@
 					if(res.data[0]){
 						this.sinResultado = false;
 						this.alumnos = res.data;
-						console.log(this.alumnos);
 					} else {
 						this.sinResultado = true;
 					}
@@ -187,7 +185,6 @@
 						this.sinResultado = true;
 					}
 				}).catch( error =>{
-					console.log(error.response);
 					this.claseModal = "bg-warning";
 	  			this.tituloModal = 'Cuidado';
 	  			this.redireccion = '/preceptor/inscripciones_admin';
@@ -221,6 +218,7 @@
 			seleccionarAlumno(legajo){
 				var datos = JSON.parse(localStorage.getItem("datos"));
 				datos.legajo = legajo;
+				console.log(datos);
 				this.$store.state.legajo = legajo;
 				localStorage.setItem('datos', JSON.stringify(datos));
 				this.$emit("cambiarLegajo");
