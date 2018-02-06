@@ -25,7 +25,7 @@
 								<td class="text-center">
 									<a 	v-bind:disabled="!periodoFinalizado" 
 											class="btn btn-success" 
-											v-on:click="periodoFinalizado?abrirComprobante(materia.url_codigo_operacion, materia):null"
+											v-on:click="periodoFinalizado ? abrirComprobante(materia.url_codigo_operacion, materia):null"
 											:data-toggle="!periodoFinalizado?'tooltip':null" data-placement="left" :title="!periodoFinalizado?'Disponible cuando finalice el periodo de inscripción':''">
 										Abrir Comprobante
 									</a>
@@ -102,13 +102,12 @@
 		},
 		computed: {
 			periodoFinalizado(){
-				let fecha_final = new Date(this.$store.state.fechas.fecha_fin).toLocaleDateString();
-				let fecha_hoy = new Date().toLocaleDateString();
+				let fecha_final = new Date(this.$store.state.fechas.fecha_fin);
+				let fecha_hoy = new Date();
+				console.log(fecha_final);
 				console.log(fecha_hoy);
-				return fecha_hoy > fecha_final;
+				return fecha_hoy.getTime() > fecha_final.getTime();
 			},
-		},
-		created(){
 		},
 		mounted: function() {
 			this.getLegajo();
@@ -120,7 +119,6 @@
 				let array1 = fecha.split('-');
 				let array2 = array1.reverse();
 				return array2.join('-');
-
 			}
 		}
 	}
