@@ -25,7 +25,7 @@
 							<th>{{materia.nombre_materia}}</th>
 							<th class="text-center">{{materia.fecha_regular || 'NO REGULARIZO' | fechaConFormato}}</th>
 							<th class="text-center">{{materia.fecha_final || (materia.fecha_regular==null?'-':'NO RINDIO') | fechaConFormato}}</th>
-							<th class="text-center">{{materia.fecha_final==null?'-':materia.nota_final}}</th>
+							<th class="text-center">{{materia.fecha_final==null ? '-' : materia.nota_final}}</th>
 						</tr>
 					</tbody>
 				</table>
