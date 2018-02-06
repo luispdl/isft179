@@ -1,0 +1,20 @@
+#cajon_respuesta {
+  display: flex;
+  justify-content: center;
+}
+
+#cajon-legajo {
+  justify-content: center;
+  height: 150px;
+  width: 300px;
+}
+
+#cajon-legajo2 {
+  justify-content: center;
+  height: 150px;
+  width: 300px;
+}
+
+.oculto {
+	display: none;
+}
