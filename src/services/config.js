@@ -5,7 +5,7 @@ const configService = {
 	// Usar la ubicación en su servidor local para desarrollo
 	//apiUrl :'http://localhost/modulo_inscripciones/servidor/'
 
-	apiUrl :'http://2017practica.areasistemas179.com/servidor/'
+	apiUrl :'http://localhost/servidor/'
 }
 
 export default configService;

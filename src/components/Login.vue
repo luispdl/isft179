@@ -1,6 +1,6 @@
 <template>
 	<section class="main container margen_section" id="login">
-		<div class="row">
+		<div class="row" @keyup.enter="iniciarSesion">
 			<div class="cd-md-12 cd-xs-12">
 				<div role="tabpanel" >
 					<div class="col-xs-12 col-sm-12" >
