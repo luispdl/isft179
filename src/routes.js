@@ -19,6 +19,7 @@ import Admin from './components/Admin.vue'
 import Preceptores from './components/Preceptores.vue'
 import EditarPassword from './components/EditarPassword.vue'
 import Bitacora from './components/Bitacora.vue'
+import Estadisticas from './components/Estadisticas.vue'
 
 const routes = [
 	{ path: '/', component: Home},
@@ -47,6 +48,7 @@ const routes = [
       { path: 'reiniciar_clave', component: ReiniciarClave},
       { path: 'bitacora', component: Bitacora},
       { path: 'bitacora/:usuario_id', component: Bitacora},
+      { path: 'estadisticas', component: Estadisticas},
     ],
     beforeEnter: (to, from, next) => {
       if(tipoUsuario()==2 || tipoUsuario()==3 ) {

@@ -30,6 +30,7 @@
                   <router-link v-if="admin" exact-active-class="active" to="/preceptor/bitacora" tag="li"><a>Bitacora</a></router-link>
                   <router-link exact-active-class="active" to="/preceptor/inscripciones_admin" tag="li"><a>Modificaciones de Inscripciones</a></router-link>
                   <router-link exact-active-class="active" to="/preceptor/noticias" tag="li"><a>Noticias</a></router-link>
+                  <router-link exact-active-class="active" to="/preceptor/estadisticas" tag="li"><a>Estadisticas</a></router-link>
                   <router-link v-if="admin" exact-active-class="active" to="/periodo_inscripcion" tag="li"><a>Periodo Inscripción</a></router-link>
                 </template>
               </ul>
