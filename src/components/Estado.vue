@@ -63,6 +63,7 @@
 				url_codigo_operacion: '',
 				materia: '',
 				claseModal:"bg-warning",
+				fecha: null,
 			}
 		},
 		components: {
@@ -70,6 +71,18 @@
 			ModalComprobante
 		},
 		methods: {
+			getFechaServidor() {
+				var urlFechaServidor = url + "fecha.php";
+				axios.get(urlFechaServidor)
+					.then( resp => {
+						this.fecha = new Date(resp.data);
+					})
+					.catch( err => {
+						console.log(err);
+						this.modalMensaje = 'Error en el servidor';
+						$("#modal-final").modal();
+					});
+			},
 			getCarreras() {
 				var legajo = this.legajo;
 				var urlEstadoInscripcion = url + "estadoInscripcion.php";
@@ -79,9 +92,9 @@
 						legajo: legajo,
 						token: token,
 					}
-				}).then(res=>{
+				}).then( res => {
 					this.carreras = res.data;
-				}).catch(err=>{
+				}).catch( err => {
 					let codigo_error = err.response.status;
 					this.modalMensaje = err.response.data.mensaje;
 					if(codigo_error == 403){
@@ -103,8 +116,8 @@
 		computed: {
 			periodoFinalizado(){
 				let fecha_final = new Date(this.$store.state.fechas.fecha_fin);
-				let fecha_hoy = new Date();
-				console.log(fecha_final);
+				let fecha_hoy = new Date(this.fecha);
+				console.log('fecha final: ' + fecha_final);
 				console.log(fecha_hoy);
 				return fecha_hoy.getTime() > fecha_final.getTime();
 			},
@@ -112,7 +125,7 @@
 		mounted: function() {
 			this.getLegajo();
 			this.getCarreras();
-			console.log(this.periodoFinalizado);
+			this.getFechaServidor();
 		},
 		filters: {
 			fechaConFormato(fecha) {

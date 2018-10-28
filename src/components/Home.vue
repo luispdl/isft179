@@ -25,6 +25,7 @@
 					</div>
 				</div>	
 			</div>
+			<div class="text-center" v-if="noticias.length == 0"><em><h3>No hay noticias para mostrar</h3></em></div>
 		</div>
 		<ring-loader class="cargando" :loading="loading"></ring-loader>
 	</div>
@@ -107,6 +108,7 @@
 
 	img {
 	  width: 200px;
+	  max-height: 200px;
 	  float: right; 
 	  margin: 0px 0px 15px 15px;
 	}

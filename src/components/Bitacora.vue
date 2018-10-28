@@ -1,9 +1,25 @@
 <template>
 	<div class="container" id="cajon-respuesta3">
 		<ul  class="nav nav-tabs" id="pestanas_academica" style="margin-top: 10px;">
-			<li v>
+			<li>
 			</li>
 		</ul>
+		<div class="container-fluid">
+			<div class="row">
+				<form class="navbar-form navbar-right" role="search">
+				  <div class="form-group">
+				    <input v-if="buscarPor != 2" v-model="q" type='text' class="form-control" placeholder="Buscar">
+				    <input v-else v-model="q" type='date' class="form-control" placeholder="Buscar">
+				    <select name="" id="" class="form-control" v-model="buscarPor">
+				    	<option value="1">Nombre de Usuario</option>
+				    	<option value="2">Fecha</option>
+				    	<option value="3">Legajo</option>
+				    </select>
+				  </div>
+				  <button @click="busqueda" type="button" class="btn btn-primary"><span class="glyphicon glyphicon-search" aria-hidden="true"></span></button>
+				</form>
+			</div>
+		</div>
 		<div id="cajon_pestanas_academica" class="tab-content">
 			<div>
 				<table class='table' v-if="bitacora.length > 0">
@@ -45,6 +61,8 @@ export default {
     return {
     	bitacora: [],
     	loading: true,
+    	buscarPor: 1,
+    	q: ''
     }
   },
   components: {
@@ -80,6 +98,21 @@ export default {
 				this.bitacora = res.data;
 				this.loading = false;
 			});
+		},
+		busqueda() {
+			var token = localStorage.getItem('token');
+			var urlBitacora = url +'mostrarBitacora.php';
+			axios.get(urlBitacora, {
+				params: {
+					token: token,
+					q: this.q,
+					buscarPor: this.buscarPor
+				}
+			}).then(res => {
+				console.log(res);
+				this.bitacora = res.data;
+				this.loading = false;
+			}).catch(error => console.log);
 		}
 	},
 	created() {

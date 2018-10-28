@@ -23,8 +23,8 @@
                 <input type="hidden" name="codigo_carrera" v-bind:value="materia.codigo_carrera" />
                 <input type="hidden" name="nro_operacion" v-bind:value="materia.nro_operacion" />
                 <input type="hidden" name="codigo_materia" v-bind:value="materia.codigo_materia" />
-                <td class="text-left">Cod. {{ materia.codigo_materia }}</td>
-                <td class="text-left">{{ materia.nombre_materia}}</td>
+                <td class="text-center">{{ materia.codigo_materia }}</td>
+                <td class="text-center">{{ materia.nombre_materia}}</td>
 
                 <td class='text-center' v-if="materia.fecha_1!='0000-00-00'">
                   {{ materia.fecha_1 | fechaConFormato}}
